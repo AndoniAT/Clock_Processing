@@ -1,4 +1,4 @@
-PShape horloge, centre, cercle, carre, mAiguille, sAiguille;
+PShape horloge, centre, cercle, carre, mAiguille, sAiguille, hAiguille;
 
 void setup() {
   println("Begin");
@@ -10,6 +10,8 @@ void setup() {
   carre = creerCarre();
   mAiguille= creermAiguille();
   sAiguille = creerSAiguille();
+  hAiguille = creerhAiguille();
+  
 }
 
 PShape creerHorloge() {
@@ -59,6 +61,7 @@ PShape creermAiguille() {
    hAiguille.endShape(CLOSE);
   return hAiguille;
 }
+
 PShape creerSAiguille() {
     PShape sAiguille = createShape();
     sAiguille.setFill(color(102,102,102));
@@ -73,6 +76,17 @@ PShape creerSAiguille() {
   return sAiguille;
 }
 
+PShape creerhAiguille() {
+    PShape hAiguille = createShape();
+    hAiguille.setFill(color(223,140,140));
+    hAiguille.beginShape(TRIANGLES);
+    hAiguille.stroke(0, 0,0);    
+    hAiguille.vertex(-10, 10);
+    hAiguille.vertex(10, 10);
+    hAiguille.vertex(0, -(width/4));
+    hAiguille.endShape(CLOSE);
+  return hAiguille;
+}
 
 
 void drawCercles() {
@@ -128,12 +142,23 @@ void drawMinutes(int div){
       shape(mAiguille);
    popMatrix();
 }
+
 void drawSeconds(int div){
   float angleSAiguille = (PI/div)*second();
    pushMatrix();
       rotate(angleSAiguille);
       shape(sAiguille);
     popMatrix();
+}
+
+void drawHours(int div){ 
+  int h = hour();
+  h*=5;
+  float angleHAiguille = (PI/div)*h;
+  pushMatrix();
+    rotate(angleHAiguille);
+    shape(hAiguille);
+  popMatrix();
 }
 
 void draw() {  
@@ -146,5 +171,6 @@ void draw() {
   drawCarres(div);
   drawMinutes(div);
   drawSeconds(div);
+  drawHours(div);
   shape(centre);
 }
