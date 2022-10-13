@@ -1,4 +1,4 @@
-PShape horloge, centre, cercle;
+PShape horloge, centre, cercle, carre;
 void setup() {
   println("Begin");
   size(600, 600, P3D);
@@ -6,6 +6,7 @@ void setup() {
   horloge = creerHorloge();
   centre = creerCentre();
   cercle = creerCercle();
+  carre = creerCarre();
   
 }
 
@@ -27,6 +28,23 @@ PShape creerCercle() {
   return cercle;
 }
 
+PShape creerCarre() {
+  PShape carre = createShape();
+  carre.beginShape();
+    //carre.noFill();
+    carre.fill(38, 164, 51);
+    int cote = 5;
+    carre.stroke(0, 0, 0, 32);
+    carre.vertex(-cote/2, -cote/2 - (width/2)+20);
+    carre.vertex( cote/2, -cote/2 - (width/2)+20);
+    carre.vertex( cote/2,  cote/2 - (width/2)+20);
+    carre.vertex(-cote/2,  cote/2 - (width/2)+20);
+  carre.endShape(CLOSE);
+  
+  return carre;
+}
+
+
 void drawCercles() {
   textSize(20);
   pushMatrix();
@@ -46,12 +64,42 @@ void drawCercles() {
   popMatrix();
 }
 
+void drawCarres(int d) {
+  pushMatrix();
+  int cC = 0;
+  float angleC = 0;
+  int div = d;
+  angleC+=PI/div;
+  if(angleC > TWO_PI) { angleC = 0; }
+  while(cC < 12) {
+    int cC2 = 0;
+    while(cC2 < 4) {
+      //println("carre");
+      pushMatrix();
+        rotate(angleC);
+        shape(carre);
+      popMatrix();
+      angleC+=PI/div;
+      if(angleC > TWO_PI) { angleC = 0; }
+      cC2++;  
+    }
+    angleC+=PI/div;
+    if(angleC > TWO_PI) { angleC = 0; }
+    cC++;
+    
+  }
+  popMatrix();
+}
+
+
 void draw() {  
   println("draw");
   background(210);
   translate(width/2, height/2);
   shape(horloge);
+  int div = 30;
   drawCercles();
+  drawCarres(div);
   shape(centre);
   
 }
