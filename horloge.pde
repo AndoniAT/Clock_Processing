@@ -126,6 +126,7 @@ void drawMinutes(int div){
     pushMatrix();
       rotate(angleMAiguille);
       shape(mAiguille);
+   popMatrix();
 }
 void drawSeconds(int div){
   float angleSAiguille = (PI/div)*second();
