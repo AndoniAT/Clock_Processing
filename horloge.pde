@@ -1,5 +1,5 @@
 PShape horloge, centre, cercle, carre, mAiguille, sAiguille;
-
+PShape ce, ce1, ce2, ce2_2, ce3, ce3_2;
 void setup() {
   println("Begin");
   size(600, 600, P3D);
@@ -10,6 +10,26 @@ void setup() {
   carre = creerCarre();
   mAiguille= creermAiguille();
   sAiguille = creerSAiguille();
+  
+  ce = createShape(ELLIPSE,-(width/4), 0, width/4, width/4);
+  ce.setFill(color(139, 186, 124));
+  
+  ce1 = createShape(ELLIPSE,-(width/4), 0, width/6, width/6);
+  ce1.setFill(color(89, 151, 70));
+  
+  
+  ce2 = createShape(ELLIPSE,(width/4), 0, width/4, width/4);
+  ce2.setFill(color(139, 186, 124));
+  
+  ce2_2 = createShape(ELLIPSE,(width/4), 0, width/6, width/6);
+  ce2_2.setFill(color(89, 151, 70));
+  
+  ce3 = createShape(ELLIPSE, 0, (width/4), width/4, width/4);
+  ce3.setFill(color(139, 186, 124));
+  
+  ce3_2 = createShape(ELLIPSE,0, (width/4), width/6, width/6);
+  ce3_2.setFill(color(89, 151, 70));
+
 }
 
 PShape creerHorloge() {
@@ -141,6 +161,17 @@ void draw() {
   background(210);
   translate(width/2, height/2);
   shape(horloge);
+  
+  shape(ce);
+  shape(ce1);
+  shape(ce2);
+  shape(ce2_2);
+  shape(ce3);
+  shape(ce3_2);
+  
+  textSize(50);
+  text("ROLEX", -(width/8), -(width/2)+120); 
+  fill(40, 132, 12);
   int div = 30;
   drawCercles();
   drawCarres(div);
