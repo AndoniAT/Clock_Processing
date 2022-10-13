@@ -1,4 +1,6 @@
 PShape horloge, centre, cercle, carre, mAiguille, sAiguille, hAiguille;
+float sec = 0;
+TimeMillis timeMil = new TimeMillis();
 
 void setup() {
   println("Begin");
