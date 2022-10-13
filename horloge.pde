@@ -1,5 +1,5 @@
-PShape horloge, centre, cercle, carre, mAiguille;
-PShape horloge, centre, cercle, carre, sAiguille;
+PShape horloge, centre, cercle, carre, mAiguille, sAiguille;
+
 void setup() {
   println("Begin");
   size(600, 600, P3D);
@@ -9,7 +9,6 @@ void setup() {
   cercle = creerCercle();
   carre = creerCarre();
   mAiguille= creermAiguille();
-  
   sAiguille = creerSAiguille();
 }
 
@@ -127,6 +126,7 @@ void drawMinutes(int div){
     pushMatrix();
       rotate(angleMAiguille);
       shape(mAiguille);
+}
 void drawSeconds(int div){
   float angleSAiguille = (PI/div)*second();
    pushMatrix();
