@@ -6,6 +6,7 @@ void setup() {
   println("Begin");
   size(600, 600, P3D);
   pixelDensity(displayDensity());
+  frameRate(60);
   horloge = creerHorloge();
   centre = creerCentre();
   cercle = creerCercle();
@@ -137,26 +138,24 @@ void drawCarres(int d) {
   popMatrix();
 }
 
-void drawMinutes(int div){ 
-  float angleMAiguille = (PI/div)*minute();
+void drawMinutes(){ 
+  float angleMAiguille = TWO_PI*timeMil.m();
     pushMatrix();
       rotate(angleMAiguille);
       shape(mAiguille);
    popMatrix();
 }
 
-void drawSeconds(int div){
-  float angleSAiguille = (PI/div)*second();
+void drawSeconds(){
+  float angleSAiguille = TWO_PI*timeMil.s();
    pushMatrix();
       rotate(angleSAiguille);
       shape(sAiguille);
     popMatrix();
 }
 
-void drawHours(int div){ 
-  int h = hour();
-  h*=5;
-  float angleHAiguille = (PI/div)*h;
+void drawHours(){ 
+  float angleHAiguille = TWO_PI*timeMil.h();
   pushMatrix();
     rotate(angleHAiguille);
     shape(hAiguille);
@@ -171,8 +170,8 @@ void draw() {
   int div = 30;
   drawCercles();
   drawCarres(div);
-  drawMinutes(div);
-  drawSeconds(div);
-  drawHours(div);
+  drawMinutes();
+  drawSeconds();
+  drawHours();
   shape(centre);
 }
